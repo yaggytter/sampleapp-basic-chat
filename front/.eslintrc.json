@@ -1,0 +1,13 @@
+{
+  "plugins": [
+    "@emotion",
+    "strict-dependencies",
+    "unused-imports"
+  ],
+  "extends": [
+    "next",
+    "plugin:@typescript-eslint/recommended",
+    "next/core-web-vitals",
+    "prettier"
+  ]
+}

@@ -1,0 +1,3 @@
+docker/postgres/data
+.history
+node_modules

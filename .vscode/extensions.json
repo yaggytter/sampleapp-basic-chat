@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "streetsidesoftware.code-spell-checker",
+    "oderwat.indent-rainbow",
+    "esbenp.prettier-vscode",
+    "bmewburn.vscode-intelephense-client",
+    "shufo.vscode-blade-formatter",
+    "mhutchie.git-graph"
+  ]
+}
