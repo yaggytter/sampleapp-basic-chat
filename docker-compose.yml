@@ -9,6 +9,8 @@ services:
     build: ./docker/php
     volumes:
       - ./api:/var/www/api
+    depends_on:
+      - db
 
   spa:
     build:
@@ -33,7 +35,6 @@ services:
 
   db:
     image: postgres:13.4
-    container_name: db
     environment:
       POSTGRES_PASSWORD: password
       POSTGRES_USER: saasus
