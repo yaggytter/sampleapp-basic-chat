@@ -19,4 +19,4 @@ docker compose exec node bash -c "npm run seed"
 
 echo "Demo site for SaaSus Platform has bees deployed!"
 echo "Node base: http://localhost:80/login  Email: user@example.com Password: password"
-echo "React base: http://localhost:3000/  Email: user2@example.com Password: password"
+echo "React base: http://localhost:3000/board"
