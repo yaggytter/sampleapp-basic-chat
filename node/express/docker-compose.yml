@@ -21,11 +21,11 @@ services:
   spa:
     build:
       context: ./
-      dockerfile: ../../php/laravel/docker/front/Dockerfile
+      dockerfile: ./docker/front/Dockerfile
     tty: true
     working_dir: /app
     volumes:
-      - ../../php/laravel/front:/app
+      - ./front:/app
     ports:
       - 3000:3000
 
