@@ -1,0 +1,5 @@
+FROM node:16
+
+RUN apt-get update
+
+CMD ["bash", "start.sh"]

@@ -1,0 +1,41 @@
+version: "3"
+
+volumes:
+  db-volume:
+  maildir: {}
+
+services:
+  node:
+    build:
+      context: ./
+      dockerfile: ./docker/node/Dockerfile
+    tty: true
+    ports:
+      - "80:80"
+    volumes:
+      - ./api:/app
+    working_dir: /app
+    depends_on:
+      - db
+
+  spa:
+    build:
+      context: ./
+      dockerfile: ../../php/laravel/docker/front/Dockerfile
+    tty: true
+    working_dir: /app
+    volumes:
+      - ../../php/laravel/front:/app
+    ports:
+      - 3000:3000
+
+  db:
+    image: postgres:13.4
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: saasus
+      POSTGRES_DB: saasus
+    volumes:
+      - ./docker/postgres/data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"

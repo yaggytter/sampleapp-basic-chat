@@ -1,0 +1,4 @@
+.env
+node_modules
+docker/postgres/data
+.vscode/
