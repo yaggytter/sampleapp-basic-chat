@@ -15,7 +15,7 @@
     <title>Sampleapp SaaSus Message Board</title>
   </head>
   <body>
-    <%-include("../partials/header")-%>
+    <%-include("./partials/header")-%>
     <div class="bg-gray-200">
       <div class="max-w-md mx-auto">
         <div class="bg-slate-900 p-4 h-14">
@@ -38,7 +38,7 @@
           </div>
           <% } %>
         </div>
-        <form class="inset-x-0 bottom-0" action="/local/chat" method="POST">
+        <form class="inset-x-0 bottom-0" action="/chat" method="POST">
           <label for="chat" class="sr-only">Your message</label>
           <div class="flex items-center py-2 px-3 bg-gray-50">
             <textarea

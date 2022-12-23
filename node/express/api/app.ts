@@ -9,7 +9,7 @@ import passport from "./config/passport";
 import session from "express-session";
 
 // route
-import { router as localChatRouter } from "./routes/local/chat";
+import { router as chatRouter } from "./routes/chat";
 import { router as apiBoardRouter } from "./routes/api/board";
 import { router as loginRouter } from "./routes/login";
 import { router as planRouter } from "./routes/plan";
@@ -50,7 +50,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use("/local/chat", localChatRouter);
+app.use("/chat", chatRouter);
 
 app.use(["/api/board", "/api/post"], apiBoardRouter);
 
