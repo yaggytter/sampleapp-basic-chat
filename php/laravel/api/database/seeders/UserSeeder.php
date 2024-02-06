@@ -20,25 +20,25 @@ class UserSeeder extends Seeder
         DB::table('users')->truncate();
         DB::table('users')->insert([
             [
-                'name' => 'Bladeユーザー1',
+                'name' => 'Blade User 1',
                 'email' => 'user@example.com',
                 'role_id' => Role::getBladeId(),
                 'password' => Hash::make('password'),
             ],
             [
-                'name' => 'Reactユーザー1',
+                'name' => 'React User 1',
                 'email' => 'user2@example.com',
                 'role_id' => Role::getReactId(),
                 'password' => Hash::make('password'),
             ],
             [
-                'name' => 'Bladeユーザー2',
+                'name' => 'Blade User 2',
                 'email' => 'user3@example.com',
                 'role_id' => Role::getBladeId(),
                 'password' => Hash::make('password'),
             ],
             [
-                'name' => 'Reactユーザー2',
+                'name' => 'React User 2',
                 'email' => 'user4@example.com',
                 'role_id' => Role::getReactId(),
                 'password' => Hash::make('password'),

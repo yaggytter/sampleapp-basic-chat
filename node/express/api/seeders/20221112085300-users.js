@@ -12,7 +12,7 @@ module.exports = {
       [
         {
           id: "1",
-          name: "Nodeユーザー1",
+          name: "Node User 1",
           email: "user@example.com",
           role_id: nodeId,
           password: bcrypt.hashSync("password", bcrypt.genSaltSync(10)),
@@ -21,7 +21,7 @@ module.exports = {
         },
         {
           id: "2",
-          name: "Reactユーザー1",
+          name: "React User 1",
           email: "user2@example.com",
           role_id: reactId,
           password: bcrypt.hashSync("password", bcrypt.genSaltSync(10)),
@@ -30,7 +30,7 @@ module.exports = {
         },
         {
           id: "3",
-          name: "Nodeユーザー2",
+          name: "User 2-1",
           email: "user3@example.com",
           role_id: nodeId,
           password: bcrypt.hashSync("password", bcrypt.genSaltSync(10)),
@@ -39,7 +39,7 @@ module.exports = {
         },
         {
           id: "4",
-          name: "Reactユーザー2",
+          name: "React User 2",
           email: "user4@example.com",
           role_id: reactId,
           password: bcrypt.hashSync("password", bcrypt.genSaltSync(10)),

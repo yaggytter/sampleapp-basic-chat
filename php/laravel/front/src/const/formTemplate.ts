@@ -4,7 +4,7 @@ import dayjs from 'dayjs'
 export const formValueFormat: Message = {
   message: '',
   // TODO 取得したユーザー名
-  user_name: 'Reactユーザー1',
+  user_name: 'React User 1',
   // TODO 取得したユーザーID
   user_id: 2,
   tenant_id: 1,
