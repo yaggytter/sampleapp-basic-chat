@@ -13,7 +13,7 @@ class MessageController extends Controller
         'プラン B',
         'プラン C',
     ];
-    public const TENANT_NAME = 'テナント1';
+    public const TENANT_NAME = 'Tenant 1';
 
     public function index()
     {

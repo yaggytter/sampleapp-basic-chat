@@ -20,7 +20,7 @@ const getBoard = async (req: Request, res: Response) => {
 
 const post = async (req: Request, res: Response) => {
   const mes = req.body.message;
-  const userName = "テストユーザー";
+  const userName = "Test User";
   try {
     await db.Messages.create({
       tenant_id: TENANT_ID,

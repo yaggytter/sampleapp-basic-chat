@@ -74,7 +74,7 @@ export const MessageBoard = ({ messages, tenant_name, onSubmit }: Props) => {
                     textOverflow: 'ellipsis',
                   }}
                 >
-                  {message.user_id}さん{' '}
+                  {message.user_id}{' '}
                   {dayjs(message.created_at).format('YYYY/MM/DD HH:mm')}
                 </Typography>
                 <Alert
