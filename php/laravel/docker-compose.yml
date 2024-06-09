@@ -12,16 +12,16 @@ services:
     depends_on:
       - db
 
-  spa:
-    build:
-      context: ./
-      dockerfile: ./docker/front/Dockerfile
-    tty: true
-    working_dir: /app
-    volumes:
-      - ./front:/app
-    ports:
-      - 3000:3000
+  # spa:
+  #   build:
+  #     context: ./
+  #     dockerfile: ./docker/front/Dockerfile
+  #   tty: true
+  #   working_dir: /app
+  #   volumes:
+  #     - ./front:/app
+  #   ports:
+  #     - 3000:3000
 
   nginx:
     image: nginx

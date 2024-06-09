@@ -1,0 +1,23 @@
+
+
+
+docker compose exec nginx bash
+apt update
+apt install -y hydra
+apt install -y libssl-dev libssh-dev libidn11-dev libpcre3-dev libgtk2.0-dev libmysqlclient-dev libpq-dev libsvn-dev firebird-dev
+
+
+cd /tmp/
+echo "password2" > passwords.txt
+echo "password" >> passwords.txt
+echo "password4" >> passwords.txt
+echo "password3" >> passwords.txt
+echo "user@example.com" > usernames.txt
+echo "user10@example.com" >> usernames.txt
+echo "user20@example.com" >> usernames.txt
+echo "user30@example.com" >> usernames.txt
+echo "user40@example.com" >> usernames.txt
+echo "user3@example.com" >> usernames.txt
+
+
+hydra -L usernames.txt -P passwords.txt -f -u -vV localhost http-post-form '/login:email=^USER^&password=^PASS^:F=wrong'
