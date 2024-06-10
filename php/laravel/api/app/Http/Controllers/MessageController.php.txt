@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Message;
 use Illuminate\Http\Request;
+use App\Models\Message;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class MessageController extends Controller
 {
@@ -26,15 +25,14 @@ class MessageController extends Controller
     public function post(Request $request)
     {
         $validated = $request->validate([
-            'message' => 'required|max:255',
+            'message' => 'required|max:255'
         ]);
-
-        $tenantId = "1";
-        $userId = Auth::id();
-        $message = $request->message;
-
-        DB::statement("INSERT INTO messages (tenant_id, user_id, message, created_at) VALUES ('$tenantId', '$userId', '$message', now())");
-
+        // 現在はtenant_idは1で固定する
+        $message = Message::create([
+            'tenant_id' => "1",
+            'user_id' => Auth::id(),
+            'message' => $request->message,
+        ]);
         $request->session()->regenerateToken();
         return redirect()->route('board');
     }
