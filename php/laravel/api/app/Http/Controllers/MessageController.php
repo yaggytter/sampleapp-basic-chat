@@ -20,6 +20,11 @@ class MessageController extends Controller
     {
         // 現在はtenant_idは1で固定する
         $messages = Message::where('tenant_id', "1")->get();
+        // ユーザーの所属しているテナントIDを入れる
+        // $userId = Auth::id();
+        // $user = User::find($userId);
+        // $tenantId = $user->tenant_id;
+        // $messages = Message::where('tenant_id', $tenant_id)->get();
         return view('messageBoard.index', ['messages' => $messages, 'plans' => $this::PLANS, 'tenant_name' => $this::TENANT_NAME]);
     }
 
@@ -29,7 +34,12 @@ class MessageController extends Controller
             'message' => 'required|max:255',
         ]);
 
+        // 現在はtenant_idは1で固定する
         $tenantId = "1";
+        // ユーザーの所属しているテナントIDを入れる
+        // $userId = Auth::id();
+        // $user = User::find($userId);
+        // $tenantId = $user->tenant_id;
         $userId = Auth::id();
         $message = $request->message;
 

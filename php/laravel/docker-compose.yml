@@ -39,7 +39,7 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_USER: saasus
       POSTGRES_DB: saasus
-    volumes:
-      - ./docker/postgres/data:/var/lib/postgresql/data
+    # volumes:
+    #   - ./docker/postgres/data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
