@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Message;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -19,12 +20,13 @@ class MessageController extends Controller
     public function index()
     {
         // 現在はtenant_idは1で固定する
-        $messages = Message::where('tenant_id', "1")->get();
+        $tenantId = "1";
         // ユーザーの所属しているテナントIDを入れる
         // $userId = Auth::id();
         // $user = User::find($userId);
         // $tenantId = $user->tenant_id;
-        // $messages = Message::where('tenant_id', $tenant_id)->get();
+
+        $messages = Message::where('tenant_id', $tenantId)->get();
         return view('messageBoard.index', ['messages' => $messages, 'plans' => $this::PLANS, 'tenant_name' => $this::TENANT_NAME]);
     }
 
@@ -36,12 +38,12 @@ class MessageController extends Controller
 
         // 現在はtenant_idは1で固定する
         $tenantId = "1";
-        // ユーザーの所属しているテナントIDを入れる
-        // $userId = Auth::id();
-        // $user = User::find($userId);
-        // $tenantId = $user->tenant_id;
         $userId = Auth::id();
         $message = $request->message;
+
+        // ユーザーの所属しているテナントIDを入れる
+        // $user = User::find($userId);
+        // $tenantId = $user->tenant_id;
 
         DB::statement("INSERT INTO messages (tenant_id, user_id, message, created_at) VALUES ('$tenantId', '$userId', '$message', now())");
 
