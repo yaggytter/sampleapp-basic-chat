@@ -14,7 +14,7 @@ cd ./php/laravel
 
 # 3. サンプルアプリケーションの表示
 # 先ほどのURLにブラウザでアクセスすると、ログイン画面が表示される
-# Email: user@example.com Password: password でログインすると、
+# Email: user@example.com Password: SaaSTraining でログインすると、
 # チャットの画面が表示されるので適当に文字を打ってみる
 
 # 4. PostgreSQL拡張機能でDBをのぞく
